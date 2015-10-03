@@ -1,0 +1,209 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CmsUno\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-08-18 12:32+0100\n"
+"PO-Revision-Date: 2015-08-18 12:32+0100\n"
+"Last-Translator: jacques Malgrange <contacter@boiteasite.fr>\n"
+"Language-Team: Jacques Malgrange <contacter@boiteasite.fr>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Report-\tmsgstr-Bugs-To: \n"
+"Report-\t\tmsgstr-Bugs-To: \n"
+"X-Poedit-KeywordsList: _\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-Country: SPAIN\n"
+"X-Poedit-SourceCharset: iso-8859-1\n"
+"X-Poedit-Language: Spanish\n"
+"X-Poedit-SearchPath-0: ../../..\n"
+
+#: ../../../markdown.php:19
+msgid "Markdown"
+msgstr "Markdown"
+
+#: ../../../markdown.php:21
+msgid "This plugin allows you to display the formatted content of a MarkDown file in your page."
+msgstr "Este plugin te permite mostrar el contenido con formato de un archivo MarkDown en su página."
+
+#: ../../../markdown.php:22
+msgid "It use"
+msgstr "Utiliza"
+
+#: ../../../markdown.php:24
+msgid "Just insert the code"
+msgstr "Sólo tiene que insertar el código"
+
+#: ../../../markdown.php:24
+msgid "nameofthefile"
+msgstr "nombredelarchivo"
+
+#: ../../../markdown.php:24
+msgid "in the template or in the page content."
+msgstr "en la plantilla o en el contenido de la página."
+
+#: ../../../markdown.php:25
+msgid "You can display many differents MarkDown files."
+msgstr "Puede mostrar tantos archivos differents Markdown."
+
+#: ../../../markdown.php:26
+msgid "More details about WordPress readme file..."
+msgstr "Más detalles sobre WordPress archivo readme..."
+
+#: ../../../markdown.php:28
+msgid "You can use this plugin to allow Paid download for a WordPress premium plugin. It's easy and appearance is identical to the plugin page available on wordpress.org."
+msgstr "Puede utilizar este plugin para permitir la descarga de pago de un plugin de WordPress premium. Es fácil y apariencia es idéntica a la página del plugin disponible en wordpress.org."
+
+#: ../../../markdown.php:30
+msgid "Rules"
+msgstr "Reglas"
+
+#: ../../../markdown.php:32
+msgid "The plugin file should be named"
+msgstr "El archivo plugin debe ser nombrado"
+
+#: ../../../markdown.php:32
+msgid "(name of the shortcode"
+msgstr "(nombre del shortcode"
+
+#: ../../../markdown.php:32
+msgid "This name will be encrypted by CMSUno."
+msgstr "Este nombre se cifrará por CMSUno."
+
+#: ../../../markdown.php:33
+msgid "The plugin file must be placed in"
+msgstr "El archivo plugin debe ser colocado en"
+
+#: ../../../markdown.php:33
+msgid "with the finder, directly under files."
+msgstr "con el finder, directamente debajo de archivos."
+
+#: ../../../markdown.php:34
+msgid "Banner and screenshot must also be stored in files/foo."
+msgstr "Banner y pantalla también deben ser almacenados en archivos/foo."
+
+#: ../../../markdown.php:35
+msgid "Banner and screenshot retain the same name as wordpress.org."
+msgstr "Banner y pantalla conservan el mismo nombre que wordpress.org."
+
+#: ../../../markdown.php:36
+msgid "If it's a paying plugin, a line must be added in the .txt file, under the title (with Tags, License...) :"
+msgstr "Si se trata de un plugin de pagar, una línea hay que añadir en el archivo .txt, bajo el título (con las etiquetas, licencia ...) :"
+
+#: ../../../markdown.php:37
+msgid "To add a support forum, add this chapter in .txt file :"
+msgstr "Para añadir un foro de soporte, agregue este capítulo en el archivo .txt :"
+
+#: ../../../markdown.php:37
+msgid "with the contents"
+msgstr "con el contenido"
+
+#: ../../../markdown.php:37
+msgid "to call the support plugin."
+msgstr "llamar el plugin apoyo."
+
+#: ../../../markdown.php:40
+msgid "Options"
+msgstr "Opciones"
+
+#: ../../../markdown.php:43
+msgid "Parser"
+msgstr "Analizador"
+
+#: ../../../markdown.php:46
+msgid "Standard MD"
+msgstr "Estándar MD"
+
+#: ../../../markdown.php:47
+msgid "MD with extra tags"
+msgstr "MD con etiquetas adicionales"
+
+#: ../../../markdown.php:48
+msgid "WordPress readme"
+msgstr "WordPress readme"
+
+#: ../../../markdown.php:51
+msgid "Extra adds features not available in standard MD."
+msgstr "Extra añade características no disponibles en MD estándar."
+
+#: ../../../markdown.php:51
+msgid "WordPress is an alternative used in readme.txt."
+msgstr "WordPress es una alternativa utilizada en readme.txt."
+
+#: ../../../markdown.php:54
+msgid "CSS"
+msgstr "CSS"
+
+#: ../../../markdown.php:57
+msgid "No CSS"
+msgstr "No CSS"
+
+#: ../../../markdown.php:64
+msgid "CSS to style the HTML output."
+msgstr "CSS para estilizar el resultado HTML."
+
+#: ../../../markdown.php:67
+msgid "Payment system"
+msgstr "Sistema de pago"
+
+#: ../../../markdown.php:70
+msgid "multiple choice"
+msgstr "opciones múltiples"
+
+#: ../../../markdown.php:75
+msgid "Only WordPress CSS and Parser. Used to sell a premium plugin. External used in selected plugin required."
+msgstr "Sólo CSS WordPress y Analizador. Se utiliza para vender un plugin premium. Externo utiliza en complemento seleccionado requerida."
+
+#: ../../../markdown.php:78
+msgid "Add a MD File :"
+msgstr "Añadir un MD del archivo:"
+
+#: ../../../markdown.php:81
+msgid "Name of the file"
+msgstr "Nombre del archivo"
+
+#: ../../../markdown.php:85
+msgid "MD File"
+msgstr "MD archivo"
+
+#: ../../../markdown.php:88
+msgid "File manager"
+msgstr "Administrador de archivos"
+
+#: ../../../markdown.php:88
+msgid "File Manager"
+msgstr "Finder"
+
+#: ../../../markdown.php:89
+msgid "Wrong format"
+msgstr "Formato erróneo"
+
+#: ../../../markdown.php:89
+msgid "Add this file"
+msgstr "Añadir este archivo"
+
+#: ../../../markdown.php:89
+msgid "Add"
+msgstr "Añadir"
+
+#: ../../../markdown.php:93
+msgid "Selection"
+msgstr "Selección"
+
+#: ../../../markdown.php:97
+msgid "Save settings"
+msgstr "Guardar ajustes"
+
+#: ../../../markdown.php:97
+msgid "Save"
+msgstr "Guardar"
+
+#: ../../../markdown.php:124
+msgid "Backup performed"
+msgstr "Copia de seguridad realizada"
+
+#: ../../../markdown.php:125
+msgid "Impossible backup"
+msgstr "Copia de seguridad Imposible"
+
