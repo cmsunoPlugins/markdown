@@ -28,3 +28,5 @@ It works with a shortcode and uses Parsedown.php to parse the markdown.
 Different CSS formats are availables.
 The wordpress format is also parsed.
 Allows to create a comprehensive system of paying plugin download with the appearance of wordpress.org.
+
+[CMSUno](https://github.com/boiteasite/cmsuno)
