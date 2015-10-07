@@ -21,7 +21,7 @@ u::::::::::::::u  n::::n    n::::n  o:::::ooooo:::::o
      \____/           \/    \/            \__/
 </pre>
 
-### Markdown ###
+## Markdown ##
 
 Allows you to display the formatted content of one or more MarkDown files in your page.
 It works with a shortcode and uses Parsedown.php to parse the markdown.
@@ -30,3 +30,8 @@ The wordpress format is also parsed.
 Allows to create a comprehensive system of paying plugin download with the appearance of wordpress.org.
 
 [CMSUno](https://github.com/boiteasite/cmsuno)
+
+### Versions ###
+
+* 1.0.1 - 07/10/2015 : Update Downloadable zip file when original zip file has changed (WordPress premium)
+* 1.0 - 05/10/2015 : First stable version

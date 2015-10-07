@@ -18,7 +18,7 @@ $d2=dirname(__FILE__).'/../../data/';
 $s = (isset($_GET['s'])?strip_tags($_GET['s']):false); // slug
 $k = (isset($_GET['k'])?strip_tags($_GET['k']):false); // key
 $u = (isset($_GET['u'])?strip_tags($_GET['u']):false); // url
-if(!$s || !$k || !$u || !file_exists($d2.'_sdata-'.$sdata.'/_digital/'.$k.$s.'.json') || !file_exists($d2.'_sdata-'.$sdata.'/markdown.json'))
+if(!$s || !$k || !$u || !file_exists($d2.'_sdata-'.$sdata.'/_digital/'.$k.$s.'.json') || !file_exists($d2.'_sdata-'.$sdata.'/markdown.json')) // OUT
 	{
 	echo json_encode(array());
 	sleep(1);
@@ -42,7 +42,7 @@ $q = file_get_contents($d2.'_sdata-'.$sdata.'/markdown.json'); $a = json_decode(
 			if(strlen(trim($tm))>0) $contributors .= $tm . ' - ';
 			}
 		}
-	if(preg_match('|Stable tag:(.*)|i',$data,$m)) $stable_tag = trim($m[1]);
+	if(preg_match('|Stable tag:(.*)|i',$data,$m)) $stable_tag = trim($m[1]); // Version
 	//
 	// JSON Response
 	$j = array(
@@ -59,24 +59,15 @@ foreach($a as $r)
 	{
 	if(isset($r['md'][$s])) { $k1 = $r['md'][$s]['k']; break; }
 	}
-if(!$k1)
-	{
-	echo json_encode($j);
-	file_put_contents('retour65.txt', $s.' - '.$k.' - '.$u. ' - '.json_encode($j));
-	exit;
-	}
+if(!$k1) { echo json_encode($j); exit; } // OUT
 $q = file_get_contents($d2.'busy.json'); $a = json_decode($q,true); $Ubusy = $a['nom'];
 $q = file_get_contents($d2.$Ubusy.'/site.json'); $a = json_decode($q,true);  $base = $a['url'];
-if(!file_exists($d1.$s.'/'.$k1.$s.'.zip'))
-	{
-	echo json_encode($j);
-	file_put_contents('retour73.txt', $s.' - '.$k.' - '.$u. ' - '.json_encode($j));
-	exit;
-	}
+if(!file_exists($d1.$s.'/'.$k1.$s.'.zip')) { echo json_encode($j); exit; } // OUT - k1 : key du zip de ref - d1 : files/ - s : slug (nom du plugin)
 //
 // update zip for user
 if(!is_dir($d1.'upload/')) mkdir($d1.'upload/');
 $k2 = substr(sha1(substr($k1,0,8).date('z').date('Y')),0,10); // key for the day
+// Dans Upload : les zip quotidiens sans key.php (un par jour) & les zip qui ont ete paye avec key.php (~150ko en plus)
 if(!file_exists($d1.'upload/'.$k2.$s.'.zip'))
 	{
 	copy($d1.$s.'/'.$k1.$s.'.zip', $d1.'upload/'.$k2.$s.'.zip');

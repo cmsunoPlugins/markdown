@@ -135,7 +135,12 @@ if (isset($_POST['action']))
 			// crypt file name (WP)
 			if(isset($a[$Ubusy]['md'])) foreach($a[$Ubusy]['md'] as $k=>$v)
 				{
-				if(file_exists('../../../files/'.$k.'/'.$k.'.zip')) rename('../../../files/'.$k.'/'.$k.'.zip','../../../files/'.$k.'/'.$v['k'].$k.'.zip');
+				if(file_exists('../../../files/'.$k.'/'.$k.'.zip'))
+					{
+					rename('../../../files/'.$k.'/'.$k.'.zip','../../../files/'.$k.'/'.$v['k'].$k.'.zip');
+					$sh = substr(sha1(substr($v['k'],0,8).date('z').date('Y')),0,10); // key for the day
+					@copy('../../../files/'.$k.'/'.$v['k'].$k.'.zip', '../../../files/upload/'.$sh.$k.'.zip'); // Update Zip of the day (cf markdownUpdate.php)
+					}
 				if(!is_dir('../../../files/'.$k)) mkdir('../../../files/'.$k,0711);
 				if(!file_exists('../../../files/'.$k.'/index.html')) file_put_contents('../../../files/'.$k.'/index.html', '<html></html>');
 				if($a[$Ubusy]['mdpars']=='wp' && !file_exists('../../../files/'.$k.'/readme.txt') && file_exists('../../../'.$v['u']))
