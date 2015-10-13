@@ -142,6 +142,7 @@ if (isset($_POST['action']))
 					@copy('../../../files/'.$k.'/'.$v['k'].$k.'.zip', '../../../files/upload/'.$sh.$k.'.zip'); // Update Zip of the day (cf markdownUpdate.php)
 					}
 				if(!is_dir('../../../files/'.$k)) mkdir('../../../files/'.$k,0711);
+				else if(substr(sprintf('%o', fileperms('/tmp')), -4)!=0711) chmod('../../../files/'.$k,0711);
 				if(!file_exists('../../../files/'.$k.'/index.html')) file_put_contents('../../../files/'.$k.'/index.html', '<html></html>');
 				if($a[$Ubusy]['mdpars']=='wp' && !file_exists('../../../files/'.$k.'/readme.txt') && file_exists('../../../'.$v['u']))
 					{

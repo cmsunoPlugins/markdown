@@ -33,5 +33,6 @@ Allows to create a comprehensive system of paying plugin download with the appea
 
 ### Versions ###
 
+* 1.0.2 - 13/10/2015 : Chmod secure on load
 * 1.0.1 - 07/10/2015 : Update Downloadable zip file when original zip file has changed (WordPress premium)
 * 1.0 - 05/10/2015 : First stable version
