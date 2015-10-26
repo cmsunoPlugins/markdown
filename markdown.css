@@ -1,0 +1,8 @@
+#markdownDigital table tr{border-bottom:1px solid #888;}
+#markdownDigital table th{text-align:center;padding:5px 2px;font-weight:700;}
+#markdownDigital table td{text-align:left;padding:2px 6px;vertical-align:middle;color:green;}
+#markdownDigital table td:nth-child(4),
+#markdownDigital table td:nth-child(6){text-align:center;}
+#markdownDigital table tr.doute td{color:#0b4a6a;}
+#markdownDigital table tr.pirate td{color:red;}
+#markdownDigital table td.yesno{text-decoration:underline;cursor:pointer;}

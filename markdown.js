@@ -13,7 +13,6 @@ function f_save_markdown(){
 		jQuery.post('uno/plugins/markdown/markdown.php',h,function(r){f_alert(r);});
 	});
 }
-//
 function f_add_markdown(f,g,h){
 	if(f&&f!='mdpars'&&f!='mdcss'&&f!='action'&&g.length>1){
 		h=g.split('/');
@@ -59,7 +58,6 @@ function f_add_markdown(f,g,h){
 	}
 	else f_alert(h);
 }
-//
 function f_load_markdown(){
 	jQuery(document).ready(function(){
 		jQuery.ajax({type:'POST',url:'uno/plugins/markdown/markdown.php',data:{'action':'load','unox':Unox},dataType:'json',async:true,success:function(data){
@@ -89,7 +87,33 @@ function f_load_markdown(){
 		}});
 	});
 }
-//
+function f_markdownDigital(){
+	document.getElementById('markdownDigital').style.display="block";
+	document.getElementById('markdownConfig').style.display="none";
+	document.getElementById('markdownD').className="bouton fr current";
+	document.getElementById('markdownC').className="bouton fr";
+	jQuery("#markdownK").empty();
+}
+function f_markdownConfig(){
+	document.getElementById('markdownDigital').style.display="none";
+	document.getElementById('markdownConfig').style.display="block";
+	document.getElementById('markdownD').className="bouton fr";
+	document.getElementById('markdownC').className="bouton fr current";
+}
+function f_markdownBlock(f,g,h,i){
+	jQuery.post('uno/plugins/markdown/markdown.php',{'action':'block','unox':Unox,'id':g,'ban':h,'i':i},function(r){f_alert(r);});
+	if(h!=0){
+		f.innerHTML=h;
+		if(i==0){f.onclick=function(){f_markdownBlock(f,g,'yes',1);};jQuery(f).parent().removeClass("pirate");}
+		else {f.onclick=function(){f_markdownBlock(f,g,'no',0);};jQuery(f).parent().addClass("pirate");}
+	}
+	else jQuery(f).parent().remove();
+}
+function f_markdownKey(f,g){
+	jQuery.post('uno/plugins/markdown/markdown.php',{'action':'key','unox':Unox,'file':g,'key':Math.random().toString().substr(2)},function(r){s=r.split("|");f_alert(s[1]);
+		alert(s[0]);document.getElementById('markdownK').innerHTML=f+'<strong style="font-weight:700;">&lt;?php $key = "'+s[0]+'"; ?&gt;</strong>';
+	});
+}
 function f_more_markdown(){a=document.getElementById('mdMore');if(a.style.display=="none")a.style.display='block';else a.style.display='none';}
 //
 f_load_markdown();
