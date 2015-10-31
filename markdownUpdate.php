@@ -84,7 +84,7 @@ if(!file_exists($d1.'upload/'.$k2.$s.'.zip'))
 //
 // SAVE Server for this key
 $q = file_get_contents($d2.'_sdata-'.$sdata.'/_digital/'.$k.$s.'.json'); $a = json_decode($q,true);
-if((isset($a['b']) && $a['b']) || (isset($a['s']) && count($a['s'])>3) { echo json_encode($j); exit; } // >3 URL or Manually blocked => BLOCKED !
+if((isset($a['b']) && $a['b']) || (isset($a['s']) && count($a['s'])>3)) { echo json_encode($j); exit; } // >3 URL or Manually blocked => BLOCKED !
 $a['s'][base64_encode($u)] = array("t"=>time(),"v"=>$stable_tag);
 file_put_contents($d2.'_sdata-'.$sdata.'/_digital/'.$k.$s.'.json', json_encode($a));
 //
