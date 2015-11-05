@@ -89,7 +89,7 @@ if (isset($_POST['action']))
 						<td><label><?php echo _("MD File");?></label></td>
 						<td>
 							<input type="text" class="input" name="markdownInp" id="markdownInp" value="" />
-							<div class="bouton" style="margin-left:30px;" id="bFMarkdown" onClick="f_finder_select('markdownInp')" title="<?php echo _("File manager");?>"><?php echo _("File Manager");?></div>
+							<div class="bouton finder" style="margin-left:30px;" id="bFMarkdown" onClick="f_finder_select('markdownInp')" title="<?php echo _("File manager");?>"><img src="<?php echo $_POST['udep']; ?>includes/img/finder.png" /></div>
 							<div class="bouton" onClick="f_add_markdown(document.getElementById('markdownName').value,document.getElementById('markdownInp').value,'! <?php echo _("Wrong format");?>')" title="<?php echo _("Add this file");?>"><?php echo _("Add");?></div>
 						</td>
 					</tr>

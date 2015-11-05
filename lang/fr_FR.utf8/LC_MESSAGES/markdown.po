@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CmsUno\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-26 17:18+0100\n"
-"PO-Revision-Date: 2015-10-26 17:18+0100\n"
+"POT-Creation-Date: 2015-11-05 16:14+0100\n"
+"PO-Revision-Date: 2015-11-05 16:14+0100\n"
 "Last-Translator: jacques Malgrange <contacter@boiteasite.fr>\n"
 "Language-Team: Jacques Malgrange <contacter@boiteasite.fr>\n"
 "Language: \n"
@@ -176,10 +176,6 @@ msgstr "Fichier MD"
 msgid "File manager"
 msgstr "Gestionnaire de fichier"
 
-#: ../../../markdown.php:92
-msgid "File Manager"
-msgstr "Finder"
-
 #: ../../../markdown.php:93
 msgid "Wrong format"
 msgstr "Mauvais format"
@@ -220,64 +216,66 @@ msgstr "Surveillance des mises à jour"
 msgid "The updates are automatically blocked from 4 URL on the same key."
 msgstr "Les mises à jour sont automatiquement bloquées à partir de 4 URL sur une même clef."
 
-#: ../../../markdown.php:128
+#: ../../../markdown.php:139
 msgid "File"
 msgstr "Fichier"
 
-#: ../../../markdown.php:128
+#: ../../../markdown.php:139
 msgid "Date of purchase"
 msgstr "Date d'achat"
 
-#: ../../../markdown.php:128
+#: ../../../markdown.php:139
 msgid "Key"
 msgstr "Clef"
 
-#: ../../../markdown.php:128
+#: ../../../markdown.php:139
 msgid "Payment"
 msgstr "Paiement"
 
-#: ../../../markdown.php:128
+#: ../../../markdown.php:139
 msgid "Detail"
 msgstr "Détail"
 
-#: ../../../markdown.php:128
+#: ../../../markdown.php:139
 msgid "Banish"
 msgstr "Bannir"
 
-#: ../../../markdown.php:164
-#: ../../../markdown.php:165
+#: ../../../markdown.php:166
+#: ../../../markdown.php:167
 msgid "Yes"
 msgstr "Oui"
 
-#: ../../../markdown.php:164
-#: ../../../markdown.php:165
+#: ../../../markdown.php:166
+#: ../../../markdown.php:167
 msgid "No"
 msgstr "Non"
 
-#: ../../../markdown.php:167
+#: ../../../markdown.php:169
 msgid "Del"
 msgstr "Suppr"
 
-#: ../../../markdown.php:203
+#: ../../../markdown.php:206
 msgid "Backup performed"
 msgstr "Sauvegarde effectu&eacute;e"
 
-#: ../../../markdown.php:204
+#: ../../../markdown.php:207
 msgid "Impossible backup"
 msgstr "Sauvegarde impossible"
 
-#: ../../../markdown.php:244
+#: ../../../markdown.php:247
 msgid "Removed"
 msgstr "Supprimé"
 
-#: ../../../markdown.php:254
-#: ../../../markdown.php:264
+#: ../../../markdown.php:257
+#: ../../../markdown.php:267
 msgid "Treated"
 msgstr "Traité"
 
-#: ../../../markdown.php:255
-#: ../../../markdown.php:265
-#: ../../../markdown.php:267
+#: ../../../markdown.php:258
+#: ../../../markdown.php:268
+#: ../../../markdown.php:270
 msgid "Error"
 msgstr "Erreur"
 
+#~ msgid "File Manager"
+#~ msgstr "Finder"

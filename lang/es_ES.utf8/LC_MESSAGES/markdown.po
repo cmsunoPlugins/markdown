@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CmsUno\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-26 17:34+0100\n"
-"PO-Revision-Date: 2015-10-26 17:34+0100\n"
+"POT-Creation-Date: 2015-11-05 16:15+0100\n"
+"PO-Revision-Date: 2015-11-05 16:15+0100\n"
 "Last-Translator: jacques Malgrange <contacter@boiteasite.fr>\n"
 "Language-Team: Jacques Malgrange <contacter@boiteasite.fr>\n"
 "Language: \n"
@@ -176,10 +176,6 @@ msgstr "MD archivo"
 msgid "File manager"
 msgstr "Administrador de archivos"
 
-#: ../../../markdown.php:92
-msgid "File Manager"
-msgstr "Finder"
-
 #: ../../../markdown.php:93
 msgid "Wrong format"
 msgstr "Formato erróneo"
@@ -281,3 +277,5 @@ msgstr "Tratada"
 msgid "Error"
 msgstr "Error"
 
+#~ msgid "File Manager"
+#~ msgstr "Finder"
