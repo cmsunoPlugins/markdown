@@ -115,5 +115,9 @@ function f_markdownKey(f,g){
 	});
 }
 function f_more_markdown(){a=document.getElementById('mdMore');if(a.style.display=="none")a.style.display='block';else a.style.display='none';}
+function f_supp_markdownDigital(f,g){
+	f.parentNode.parentNode.removeChild(f.parentNode);
+	jQuery.post('uno/plugins/markdown/markdown.php',{'action':'suppdigital','unox':Unox,'file':g},function(r){f_alert(r);});
+}
 //
 f_load_markdown();

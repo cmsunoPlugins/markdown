@@ -136,7 +136,7 @@ if (isset($_POST['action']))
 				if(count($b))
 					{
 					echo '<br /><table>';
-					echo '<tr><th>'._("File").'</th><th>'._("Date of purchase").'</th><th>'._("Key").'</th><th>'._("Payment").'</th><th>'._("Detail").'</th><th>'._("Banish").'</th></tr>';
+					echo '<tr><th>'._("File").'</th><th>'._("Date of purchase").'</th><th>'._("Key").'</th><th>'._("Payment").'</th><th>'._("Detail").'</th><th>'._("Banish").'</th><th>'._("Del").'</th></tr>';
 					foreach($b as $r)
 						{
 						if($r)
@@ -169,6 +169,8 @@ if (isset($_POST['action']))
 								else echo '<td '.((!isset($r['b'])||!$r['b'])?'onClick="f_markdownBlock(this,\''.$r['k'].$r['d'].'\',0,0)"':'').' class="yesno">'._("Del").'</td>';
 								}
 							else echo '<td></td>';
+							if(!isset($r['s']) && isset($r['k']) && isset($r['d'])) echo '<td width="30px" style="cursor:pointer;background:transparent url(\''.$_POST['udep'].'includes/img/close.png\') no-repeat scroll center center;" onClick="f_supp_markdownDigital(this,\''.$r['k'].$r['d'].'\')">&nbsp;</td>';
+							else echo '<td></td>';
 							echo '</tr>';
 							}
 						}
@@ -193,7 +195,7 @@ if (isset($_POST['action']))
 		else $b = array();
 		foreach($_POST as $k=>$v)
 			{
-			if($k!='action' && $k!='mdpars' && $k!='mdcss' && $k!='mdpay')
+			if($k!='action' && $k!='mdpars' && $k!='mdcss' && $k!='mdpay' && $k!='unox')
 				{
 				$b[$Ubusy]['md'][$k]['u'] = $v;
 				if(!isset($a[$Ubusy]['md'][$k]['k'])) $b[$Ubusy]['md'][$k]['k'] = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"),0,16);
@@ -268,6 +270,15 @@ if (isset($_POST['action']))
 			else echo '000|'.'!'._('Error');
 			}
 		else echo '000|'.'!'._('Error');
+		break;
+		// ********************************************************************************************
+		case 'suppdigital':
+		if(file_exists('../../data/_sdata-'.$sdata.'/_digital/'.$_POST['file'].'.json'))
+			{
+			unlink('../../data/_sdata-'.$sdata.'/_digital/'.$_POST['file'].'.json');
+			echo _('Removed');
+			}
+		else echo '!'._('Error');
 		break;
 		// ********************************************************************************************
 		}
