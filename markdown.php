@@ -101,83 +101,86 @@ if (isset($_POST['action']))
 				<div class="bouton fr" onClick="f_save_markdown();" title="<?php echo _("Save settings");?>"><?php echo _("Save");?></div>
 			</div>
 			<div id="markdownDigital" style="display:none;">
-			<select id="markdownSelF">
+				<select id="markdownSelF">
+					<?php
+					$q = file_get_contents('../../data/_sdata-'.$sdata.'/markdown.json'); $a = json_decode($q,true); $data = ',';
+					foreach($a[$Ubusy]['md'] as $k=>$v)
+						{
+						echo '<option value="'.$k.'">'.$k.'</option>';
+						$data .= $k .',';
+						}
+					?>
+				</select>
+				<div class="bouton" onClick="f_markdownKey('<?php echo _("Create a file named key.php with this content");?> : ',document.getElementById('markdownSelF').options[document.getElementById('markdownSelF').selectedIndex].value);" title="<?php echo _("Create new free Key");?>"><?php echo _("Create new free Key");?></div>
+				<div id="markdownK"></div>
+				<h3><?php echo _("Updates monitoring"); ?></h3>
+				<p><?php echo _("The updates are automatically blocked from 5 URL on the same key.");?></p>
 				<?php
-				$q = file_get_contents('../../data/_sdata-'.$sdata.'/markdown.json'); $a = json_decode($q,true); $data = ',';
-				foreach($a[$Ubusy]['md'] as $k=>$v)
+				$tab=''; $d='../../data/_sdata-'.$sdata.'/_digital/';
+				if ($dh=opendir($d))
 					{
-					echo '<option value="'.$k.'">'.$k.'</option>';
-					$data .= $k .',';
+					while (($file = readdir($dh))!==false) { if ($file!='.' && $file!='..') $tab[]=$d.$file; }
+					closedir($dh);
+					}
+				if(count($tab))
+					{
+					$b = array();
+					foreach($tab as $r)
+						{
+						$q=@file_get_contents($r);
+						$a=json_decode($q,true);
+						if(strpos($data,','.$a['d'].',')!==false) $b[]=$a; // filtre
+						}
+					function sortTime($u1,$u2) {return (isset($u2['t'])?$u2['t']:0) - (isset($u1['t'])?$u1['t']:0);}
+					usort($b, 'sortTime');
+					if(count($b))
+						{
+						echo '<br /><table>';
+						echo '<tr><th>'._("File").'</th><th>'._("Date of purchase").'</th><th>'._("Key").'</th><th>'._("Payment").'</th><th>'._("Detail").'</th><th>'._("Banish").'</th><th>'._("Del").'</th></tr>';
+						foreach($b as $r)
+							{
+							if($r)
+								{
+								$pirate = 0;
+								$o = '';
+								$o .= '<td>'.(isset($r['d'])?$r['d']:'').'</td>';
+								$o .= '<td>'.(isset($r['t'])?date("dMy H:i", $r['t']):'').'</td>';
+								$o .= '<td>'.(isset($r['k'])?$r['k']:'').'</td>';
+								$o .= '<td>'.(isset($r['p'])?$r['p']:'').'</td>';
+								$o .= '<td>';
+								if(isset($r['s']))
+									{
+									$c = 0;
+									foreach($r['s'] as $k1=>$v1)
+										{
+										if($c) $o .= '<br />';
+										if(is_array($v1) && isset($v1['t']) && isset($v1['v'])) $o .= date("dMy H:i", $v1['t']).' (V'.$v1['v'].') : '.base64_decode($k1);
+										else $o.= date("dMy H:i", $v1).' : '.base64_decode($k1);
+										++$c;
+										}
+									if($c>4) $pirate = 1; // >4 URL => BLOCKED ! cf markdownUpdate.php
+									}
+								$o .= '</td>';
+								if(isset($r['k']) && isset($r['d']))
+									{
+									if(isset($r['p']) && $r['p']!="free")
+										{
+										if(!isset($r['b'])||!$r['b']) $o .= '<td onClick="f_markdownBlock(this,\''.$r['k'].$r['d'].'\',\''._("Yes").'\',1)" class="yesno">'._("No").'</td>';
+										else $o .= '<td onClick="f_markdownBlock(this,\''.$r['k'].$r['d'].'\',\''._("No").'\',0)" class="yesno">'._("Yes").'</td>';
+										}
+									else $o .= '<td '.((!isset($r['b'])||!$r['b'])?'onClick="f_markdownBlock(this,\''.$r['k'].$r['d'].'\',0,0)"':'').' class="yesno">'._("Del").'</td>';
+									}
+								else $o .= '<td></td>';
+								if(!isset($r['s']) && isset($r['k']) && isset($r['d'])) $o .= '<td width="30px" style="cursor:pointer;background:transparent url(\''.$_POST['udep'].'includes/img/close.png\') no-repeat scroll center center;" onClick="f_supp_markdownDigital(this,\''.$r['k'].$r['d'].'\')">&nbsp;</td>';
+								else $o .= '<td></td>';
+								// ECHO
+								echo '<tr class="'.(isset($r['d'])?$r['d']:'').((isset($r['b'])&&$r['b']||$pirate)?' pirate':((isset($r['s'])&&count($r['s'])>1)?' doute':'')).'">' . $o . '</tr>';
+								}
+							}
+						echo '</table>';
+						}
 					}
 				?>
-			</select>
-			<div class="bouton" onClick="f_markdownKey('<?php echo _("Create a file named key.php with this content");?> : ',document.getElementById('markdownSelF').options[document.getElementById('markdownSelF').selectedIndex].value);" title="<?php echo _("Create new free Key");?>"><?php echo _("Create new free Key");?></div>
-			<div id="markdownK"></div>
-			<h3><?php echo _("Updates monitoring"); ?></h3>
-			<p><?php echo _("The updates are automatically blocked from 4 URL on the same key.");?></p>
-			<?php
-			$tab=''; $d='../../data/_sdata-'.$sdata.'/_digital/';
-			if ($dh=opendir($d))
-				{
-				while (($file = readdir($dh))!==false) { if ($file!='.' && $file!='..') $tab[]=$d.$file; }
-				closedir($dh);
-				}
-			if(count($tab))
-				{
-				$b = array();
-				foreach($tab as $r)
-					{
-					$q=@file_get_contents($r);
-					$a=json_decode($q,true);
-					if(strpos($data,','.$a['d'].',')!==false) $b[]=$a; // filtre
-					}
-				function sortTime($u1,$u2) {return (isset($u2['t'])?$u2['t']:0) - (isset($u1['t'])?$u1['t']:0);}
-				usort($b, 'sortTime');
-				if(count($b))
-					{
-					echo '<br /><table>';
-					echo '<tr><th>'._("File").'</th><th>'._("Date of purchase").'</th><th>'._("Key").'</th><th>'._("Payment").'</th><th>'._("Detail").'</th><th>'._("Banish").'</th><th>'._("Del").'</th></tr>';
-					foreach($b as $r)
-						{
-						if($r)
-							{
-							echo '<tr class="'.(isset($r['d'])?$r['d']:'').((isset($r['b'])&&$r['b'])?' pirate':((isset($r['s'])&&count($r['s'])>1)?' doute':'')).'">';
-							echo '<td>'.(isset($r['d'])?$r['d']:'').'</td>';
-							echo '<td>'.(isset($r['t'])?date("dMy H:i", $r['t']):'').'</td>';
-							echo '<td>'.(isset($r['k'])?$r['k']:'').'</td>';
-							echo '<td>'.(isset($r['p'])?$r['p']:'').'</td>';
-							echo '<td>';
-							if(isset($r['s']))
-								{
-								$c = 0;
-								foreach($r['s'] as $k1=>$v1)
-									{
-									if($c) echo '<br />';
-									if(is_array($v1) && isset($v1['t']) && isset($v1['v'])) echo date("dMy H:i", $v1['t']).' (V'.$v1['v'].') : '.base64_decode($k1);
-									else echo date("dMy H:i", $v1).' : '.base64_decode($k1);
-									++$c;
-									}
-								}
-							echo '</td>';
-							if(isset($r['k']) && isset($r['d']))
-								{
-								if(isset($r['p']) && $r['p']!="free")
-									{
-									if(!isset($r['b'])||!$r['b']) echo '<td onClick="f_markdownBlock(this,\''.$r['k'].$r['d'].'\',\''._("Yes").'\',1)" class="yesno">'._("No").'</td>';
-									else echo '<td onClick="f_markdownBlock(this,\''.$r['k'].$r['d'].'\',\''._("No").'\',0)" class="yesno">'._("Yes").'</td>';
-									}
-								else echo '<td '.((!isset($r['b'])||!$r['b'])?'onClick="f_markdownBlock(this,\''.$r['k'].$r['d'].'\',0,0)"':'').' class="yesno">'._("Del").'</td>';
-								}
-							else echo '<td></td>';
-							if(!isset($r['s']) && isset($r['k']) && isset($r['d'])) echo '<td width="30px" style="cursor:pointer;background:transparent url(\''.$_POST['udep'].'includes/img/close.png\') no-repeat scroll center center;" onClick="f_supp_markdownDigital(this,\''.$r['k'].$r['d'].'\')">&nbsp;</td>';
-							else echo '<td></td>';
-							echo '</tr>';
-							}
-						}
-					echo '</table>';
-					}
-				}
-			?>
 			</div>
 			<div class="clear"></div>
 		</div>

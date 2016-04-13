@@ -33,6 +33,7 @@ Allows to create a comprehensive system of paying plugin download with the appea
 
 ### Versions ###
 
+* 1.1.4 - 13/04/2016 : Save data only when update. Block update if more than 4 website on the same key.
 * 1.1.3 - 20/03/2016 : New version of Parsedown and Parsedown-extra compatible with PHP7
 * 1.1.2 - 05/11/2015 : Icon on finder button
 * 1.1.1 - 31/10/2015 : Fix writing error (parenthesis not closed)

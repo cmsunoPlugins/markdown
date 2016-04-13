@@ -24,7 +24,10 @@ if(!$s || !$k || !$u || !file_exists($d2.'_sdata-'.$sdata.'/_digital/'.$k.$s.'.j
 	sleep(1);
 	exit;
 	}
-$q = file_get_contents($d2.'_sdata-'.$sdata.'/markdown.json'); $a = json_decode($q,true); $k1 = false;
+// OK Door 1
+$q = file_get_contents($d2.'_sdata-'.$sdata.'/markdown.json');
+$a = json_decode($q,true);
+$k1 = false;
 // ***** RESPONSE *****
 	// GET Data from readme.txt
 	$data = file_get_contents($d1.$s.'/readme.txt');
@@ -60,9 +63,11 @@ foreach($a as $r)
 	if(isset($r['md'][$s])) { $k1 = $r['md'][$s]['k']; break; }
 	}
 if(!$k1) { echo json_encode($j); exit; } // OUT
+// OK Door 2
 $q = file_get_contents($d2.'busy.json'); $a = json_decode($q,true); $Ubusy = $a['nom'];
 $q = file_get_contents($d2.$Ubusy.'/site.json'); $a = json_decode($q,true);  $base = $a['url'];
 if(!file_exists($d1.$s.'/'.$k1.$s.'.zip')) { echo json_encode($j); exit; } // OUT - k1 : key du zip de ref - d1 : files/ - s : slug (nom du plugin)
+// OK Door 3
 //
 // update zip for user
 if(!is_dir($d1.'upload/')) mkdir($d1.'upload/');
@@ -84,9 +89,13 @@ if(!file_exists($d1.'upload/'.$k2.$s.'.zip'))
 //
 // SAVE Server for this key
 $q = file_get_contents($d2.'_sdata-'.$sdata.'/_digital/'.$k.$s.'.json'); $a = json_decode($q,true);
-if((isset($a['b']) && $a['b']) || (isset($a['s']) && count($a['s'])>3)) { echo json_encode($j); exit; } // >3 URL or Manually blocked => BLOCKED !
-$a['s'][base64_encode($u)] = array("t"=>time(),"v"=>$stable_tag);
-file_put_contents($d2.'_sdata-'.$sdata.'/_digital/'.$k.$s.'.json', json_encode($a));
+if((isset($a['b']) && $a['b']) || (isset($a['s']) && count($a['s'])>4)) { echo json_encode($j); exit; } // >4 URL or Manually blocked => BLOCKED !
+// OK Door 4
+if(!isset($a['s'][base64_encode($u)]["v"]) || $a['s'][base64_encode($u)]["v"]!=$stable_tag)
+	{
+	$a['s'][base64_encode($u)] = array("t"=>time(),"v"=>$stable_tag);
+	file_put_contents($d2.'_sdata-'.$sdata.'/_digital/'.$k.$s.'.json', json_encode($a));
+	}
 //
 $j['download_url'] = $base.'/files/upload/'.$k2.$s.'.zip';
 $j['version'] = $stable_tag;
