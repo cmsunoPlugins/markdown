@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CmsUno\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-11-05 16:14+0100\n"
-"PO-Revision-Date: 2015-11-05 16:14+0100\n"
+"POT-Creation-Date: 2016-06-01 10:41+0100\n"
+"PO-Revision-Date: 2016-06-01 10:41+0100\n"
 "Last-Translator: jacques Malgrange <contacter@boiteasite.fr>\n"
 "Language-Team: Jacques Malgrange <contacter@boiteasite.fr>\n"
 "Language: \n"
@@ -213,8 +213,8 @@ msgid "Updates monitoring"
 msgstr "Surveillance des mises à jour"
 
 #: ../../../markdown.php:117
-msgid "The updates are automatically blocked from 4 URL on the same key."
-msgstr "Les mises à jour sont automatiquement bloquées à partir de 4 URL sur une même clef."
+msgid "The updates are automatically blocked from 5 URL on the same key."
+msgstr "Les mises à jour sont automatiquement bloquées à partir de 5 URL sur une même clef."
 
 #: ../../../markdown.php:139
 msgid "File"
@@ -240,40 +240,43 @@ msgstr "Détail"
 msgid "Banish"
 msgstr "Bannir"
 
-#: ../../../markdown.php:166
-#: ../../../markdown.php:167
-msgid "Yes"
-msgstr "Oui"
-
-#: ../../../markdown.php:166
-#: ../../../markdown.php:167
-msgid "No"
-msgstr "Non"
-
-#: ../../../markdown.php:169
+#: ../../../markdown.php:139
+#: ../../../markdown.php:171
 msgid "Del"
 msgstr "Suppr"
 
-#: ../../../markdown.php:206
+#: ../../../markdown.php:168
+#: ../../../markdown.php:169
+msgid "Yes"
+msgstr "Oui"
+
+#: ../../../markdown.php:168
+#: ../../../markdown.php:169
+msgid "No"
+msgstr "Non"
+
+#: ../../../markdown.php:211
 msgid "Backup performed"
 msgstr "Sauvegarde effectu&eacute;e"
 
-#: ../../../markdown.php:207
+#: ../../../markdown.php:212
 msgid "Impossible backup"
 msgstr "Sauvegarde impossible"
 
-#: ../../../markdown.php:247
+#: ../../../markdown.php:252
+#: ../../../markdown.php:282
 msgid "Removed"
 msgstr "Supprimé"
 
-#: ../../../markdown.php:257
-#: ../../../markdown.php:267
+#: ../../../markdown.php:262
+#: ../../../markdown.php:272
 msgid "Treated"
 msgstr "Traité"
 
-#: ../../../markdown.php:258
-#: ../../../markdown.php:268
-#: ../../../markdown.php:270
+#: ../../../markdown.php:263
+#: ../../../markdown.php:273
+#: ../../../markdown.php:275
+#: ../../../markdown.php:284
 msgid "Error"
 msgstr "Erreur"
 
