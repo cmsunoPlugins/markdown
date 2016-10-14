@@ -9,7 +9,7 @@
 //		{
 //		require(dirname(__FILE__).'/key.php');
 //		require(dirname(__FILE__).'/plugin-update-checker/plugin-update-checker.php');
-//		$MyUpdateChecker= new PluginUpdateChecker_2_0('http://LINK-TO-THIS FILE/markdownUpdate.php?s=myplugin&k='.$key.'&u='.$_SERVER['SERVER_NAME'], __FILE__, 'myplugin');
+//		$MyUpdateChecker= new PluginUpdateChecker_3_1('http://LINK-TO-THIS FILE/markdownUpdate.php?s=myplugin&k='.$key.'&u='.$_SERVER['SERVER_NAME'], __FILE__, 'myplugin');
 //		}
 //
 include(dirname(__FILE__).'/../../config.php'); // sdata
@@ -33,7 +33,7 @@ $k1 = false;
 	$data = file_get_contents($d1.$s.'/readme.txt');
 	$pos = strpos($data,'== Description');
 	if($pos!==false) $data = substr($data,0,$pos);
-	$name = ''; $contributor = ''; $stable_tag = 0;
+	$name = ''; $contributors = ''; $stable_tag = 0;
 	$name = explode("===",' '.$data);
 	if(is_array($name)) $name = $name[1];
 	if(preg_match('|Contributors:(.*)|i',$data,$m))
