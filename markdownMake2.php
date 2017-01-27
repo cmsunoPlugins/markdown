@@ -7,7 +7,7 @@ if(file_exists('data/_sdata-'.$sdata.'/markdown.json'))
 	$q1 = file_get_contents('data/_sdata-'.$sdata.'/markdown.json');
 	$a2 = json_decode($q1,true);
 	$a1 = $a2[$Ubusy];
-	$markdown = 0; $mdfoot = 0;
+	$markdown = 0; $mdfoot = 0; $maj = 0;
 	include('parsedown/Parsedown.php');
 	if($a1['mdpars']=='extra')
 		{
@@ -17,11 +17,12 @@ if(file_exists('data/_sdata-'.$sdata.'/markdown.json'))
 	else $Parsedown = new Parsedown();
 	if(isset($a1['md'])) foreach($a1['md'] as $k1=>$v1)
 		{
-		$out = 0; $price=0;
-		if(file_exists('../'.$v1['u']) && (strstr($Uhtml,'[[markdown-'.$k1.']]') || strstr($Ucontent,'[[markdown-'.$k1.']]')))
+		$out = 0; $price=0; $q2 = '';
+		if(strstr($Uhtml,'[[markdown-'.$k1.']]') || strstr($Ucontent,'[[markdown-'.$k1.']]'))
 			{
-			// 1. import file
-			$q2 = file_get_contents('../'.$v1['u']);
+			// 1. import data
+			if(isset($v1['u']) && file_exists('../'.$v1['u'])) $q2 = file_get_contents('../'.$v1['u']);
+			else if(isset($v1['c'])) $q2 = $v1['c'];
 			// 2. parse content
 			// ************************************ WP ******************************************
 			if($a1['mdpars']=="wp")
@@ -185,9 +186,13 @@ if(file_exists('data/_sdata-'.$sdata.'/markdown.json'))
 				$markdown = 1;
 				}
 			}
-		if($price) $a2[$Ubusy]['md'][$k1]['p'] = $price; // MAJ price
+		if($price && isset($v1['u']))
+			{
+			$a2[$Ubusy]['md'][$k1]['p'] = $price; // MAJ price
+			$maj = 1;
+			}
 		}
-	file_put_contents('data/_sdata-'.$sdata.'/markdown.json', json_encode($a2)); // MAJ price
+	if($maj) file_put_contents('data/_sdata-'.$sdata.'/markdown.json', json_encode($a2)); // MAJ price
 	if($mdfoot) $Ufoot .= $mdfoot;
 	if(isset($mdfoot2) && $mdfoot2) $Ufoot .= $mdfoot2;
 	}

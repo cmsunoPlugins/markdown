@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CmsUno\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-01 10:41+0100\n"
-"PO-Revision-Date: 2016-06-01 10:41+0100\n"
+"POT-Creation-Date: 2017-01-27 10:35+0100\n"
+"PO-Revision-Date: 2017-01-27 10:35+0100\n"
 "Last-Translator: jacques Malgrange <contacter@boiteasite.fr>\n"
 "Language-Team: Jacques Malgrange <contacter@boiteasite.fr>\n"
 "Language: \n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Report-\tmsgstr-Bugs-To: \n"
 "Report-\t\tmsgstr-Bugs-To: \n"
-"X-Poedit-KeywordsList: _\n"
+"X-Poedit-KeywordsList: _;T_\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-Country: FRANCE\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
@@ -29,8 +29,8 @@ msgid "Markdown"
 msgstr "Markdown"
 
 #: ../../../markdown.php:25
-msgid "This plugin allows you to display the formatted content of a MarkDown file in your page."
-msgstr "Ce plugin vous permet d'afficher le contenu d'un fichier formaté MarkDown (.md) dans votre page."
+msgid "This plugin allows you to display the formatted content of a MarkDown file or content in your page."
+msgstr "Ce plugin vous permet d'afficher un contenu ou un fichier formaté MarkDown (.md) dans votre page."
 
 #: ../../../markdown.php:26
 msgid "It use"
@@ -41,16 +41,16 @@ msgid "Just insert the code"
 msgstr "Il suffit d'ins&eacute;rer le code"
 
 #: ../../../markdown.php:28
-msgid "nameofthefile"
-msgstr "nomdufichier"
+msgid "nameofthefileorcontent"
+msgstr "nomdufichierouducontenu"
 
 #: ../../../markdown.php:28
 msgid "in the template or in the page content."
 msgstr "dans le template ou dans le contenu de la page."
 
 #: ../../../markdown.php:29
-msgid "You can display many differents MarkDown files."
-msgstr "Vous pouvez afficher plusieurs fichiers MarkDown."
+msgid "You can display many differents MarkDown files or content."
+msgstr "Vous pouvez afficher plusieurs fichiers ou contenu MarkDown."
 
 #: ../../../markdown.php:30
 msgid "More details about WordPress readme file..."
@@ -153,132 +153,148 @@ msgid "Payment system"
 msgstr "Système de paiement"
 
 #: ../../../markdown.php:74
-msgid "multiple choice"
-msgstr "choix multiple"
+msgid "multiple choice (Payment)"
+msgstr "choix multiple (Payment)"
 
 #: ../../../markdown.php:79
 msgid "Only WordPress CSS and Parser. Used to sell a premium plugin. External used in selected plugin required."
 msgstr "Uniquement pour WordPress CSS et Décodeur. Vente de plugin Premium. Cocher 'externe' dans le plugin de paiement."
 
 #: ../../../markdown.php:82
-msgid "Add a MD File :"
-msgstr "Ajouter un fichier MD :"
-
-#: ../../../markdown.php:85
-msgid "Name of the file"
-msgstr "Nom du fichier"
-
-#: ../../../markdown.php:89
-msgid "MD File"
-msgstr "Fichier MD"
-
-#: ../../../markdown.php:92
-msgid "File manager"
-msgstr "Gestionnaire de fichier"
-
-#: ../../../markdown.php:93
-msgid "Wrong format"
-msgstr "Mauvais format"
-
-#: ../../../markdown.php:93
-msgid "Add this file"
-msgstr "Ajoute ce fichier"
-
-#: ../../../markdown.php:93
-msgid "Add"
-msgstr "Ajouter"
-
-#: ../../../markdown.php:97
-msgid "Selection"
-msgstr "Sélection"
-
-#: ../../../markdown.php:101
 msgid "Save settings"
 msgstr "Enregistre le contenu"
 
-#: ../../../markdown.php:101
+#: ../../../markdown.php:82
 msgid "Save"
 msgstr "Enregistrer"
 
+#: ../../../markdown.php:84
+msgid "Add a content or a MD File :"
+msgstr "Ajouter un fichier ou un contenu MD :"
+
+#: ../../../markdown.php:87
+msgid "Name"
+msgstr "Nom"
+
+#: ../../../markdown.php:89
+msgid "The name will be used in the shortcode : [[markdown-name]]."
+msgstr "Le nom sera utilisé dans le shortcode : [[markdown-name]]."
+
+#: ../../../markdown.php:92
+msgid "MD File"
+msgstr "Fichier MD"
+
+#: ../../../markdown.php:95
+msgid "File manager"
+msgstr "Gestionnaire de fichier"
+
+#: ../../../markdown.php:100
+msgid "MD Content"
+msgstr "Contenu MD"
+
+#: ../../../markdown.php:104
+msgid "Add File or Content, not both !"
+msgstr "Ajouter un fichier ou un contenu, pas les deux !"
+
+#: ../../../markdown.php:109
+#: ../../../markdown.php:275
+#: ../../../markdown.php:301
+#: ../../../markdown.php:311
+#: ../../../markdown.php:313
+#: ../../../markdown.php:322
+msgid "Error"
+msgstr "Erreur"
+
+#: ../../../markdown.php:109
+msgid "Add this file"
+msgstr "Ajoute ce fichier"
+
+#: ../../../markdown.php:109
+msgid "Add"
+msgstr "Ajouter"
+
 #: ../../../markdown.php:114
+msgid "Selection"
+msgstr "Sélection"
+
+#: ../../../markdown.php:131
 msgid "Create a file named key.php with this content"
 msgstr "Créer un fichier nommé key.php avec le contenu suivant"
 
-#: ../../../markdown.php:114
+#: ../../../markdown.php:131
 msgid "Create new free Key"
 msgstr "Créer une nouvelle clef gratuite"
 
-#: ../../../markdown.php:116
+#: ../../../markdown.php:133
 msgid "Updates monitoring"
 msgstr "Surveillance des mises à jour"
 
-#: ../../../markdown.php:117
+#: ../../../markdown.php:134
 msgid "The updates are automatically blocked from 5 URL on the same key."
 msgstr "Les mises à jour sont automatiquement bloquées à partir de 5 URL sur une même clef."
 
-#: ../../../markdown.php:139
+#: ../../../markdown.php:156
 msgid "File"
 msgstr "Fichier"
 
-#: ../../../markdown.php:139
+#: ../../../markdown.php:156
 msgid "Date of purchase"
 msgstr "Date d'achat"
 
-#: ../../../markdown.php:139
+#: ../../../markdown.php:156
 msgid "Key"
 msgstr "Clef"
 
-#: ../../../markdown.php:139
+#: ../../../markdown.php:156
 msgid "Payment"
 msgstr "Paiement"
 
-#: ../../../markdown.php:139
+#: ../../../markdown.php:156
 msgid "Detail"
 msgstr "Détail"
 
-#: ../../../markdown.php:139
+#: ../../../markdown.php:156
 msgid "Banish"
 msgstr "Bannir"
 
-#: ../../../markdown.php:139
-#: ../../../markdown.php:171
+#: ../../../markdown.php:156
+#: ../../../markdown.php:188
 msgid "Del"
 msgstr "Suppr"
 
-#: ../../../markdown.php:168
-#: ../../../markdown.php:169
+#: ../../../markdown.php:185
+#: ../../../markdown.php:186
 msgid "Yes"
 msgstr "Oui"
 
-#: ../../../markdown.php:168
-#: ../../../markdown.php:169
+#: ../../../markdown.php:185
+#: ../../../markdown.php:186
 msgid "No"
 msgstr "Non"
 
-#: ../../../markdown.php:211
+#: ../../../markdown.php:234
 msgid "Backup performed"
 msgstr "Sauvegarde effectu&eacute;e"
 
-#: ../../../markdown.php:212
+#: ../../../markdown.php:235
 msgid "Impossible backup"
 msgstr "Sauvegarde impossible"
 
-#: ../../../markdown.php:252
-#: ../../../markdown.php:282
+#: ../../../markdown.php:290
+#: ../../../markdown.php:320
 msgid "Removed"
 msgstr "Supprimé"
 
-#: ../../../markdown.php:262
-#: ../../../markdown.php:272
+#: ../../../markdown.php:300
+#: ../../../markdown.php:310
 msgid "Treated"
 msgstr "Traité"
 
-#: ../../../markdown.php:263
-#: ../../../markdown.php:273
-#: ../../../markdown.php:275
-#: ../../../markdown.php:284
-msgid "Error"
-msgstr "Erreur"
+#~ msgid "Name of the file"
+#~ msgstr "Nom du fichier"
+
+#~ msgid "Wrong format"
+#~ msgstr "Mauvais format"
 
 #~ msgid "File Manager"
 #~ msgstr "Finder"

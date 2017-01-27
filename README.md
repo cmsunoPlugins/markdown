@@ -23,7 +23,7 @@ u::::::::::::::u  n::::n    n::::n  o:::::ooooo:::::o
 
 ## Markdown ##
 
-Allows you to display the formatted content of one or more MarkDown files in your page.
+Allows you to display the formatted content of one or more MarkDown files or textarea contents in your page.
 It works with a shortcode and uses Parsedown.php to parse the markdown.
 Different CSS formats are availables.
 The wordpress format is also parsed.
@@ -33,6 +33,7 @@ Allows to create a comprehensive system of paying plugin download with the appea
 
 ### Versions ###
 
+* 1.3 - 27/01/2016 : Can now display content from a textarea (not only from a file)
 * 1.2 - 14/10/2016 : Use PHP-Gettext in place of gettext
 * 1.1.5 - 01/06/2016 : Translation correction.
 * 1.1.4 - 13/04/2016 : Save data only when update. Block update if more than 4 website on the same key.

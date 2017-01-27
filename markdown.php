@@ -22,11 +22,11 @@ if (isset($_POST['action']))
 			<h2><?php echo T_("Markdown");?></h2>
 			<div id="markdownConfig">
 				<p>
-					<?php echo T_("This plugin allows you to display the formatted content of a MarkDown file in your page.");?>
+					<?php echo T_("This plugin allows you to display the formatted content of a MarkDown file or content in your page.");?>
 					<?php echo T_("It use");?>&nbsp;<a href="https://github.com/erusev/parsedown">Parsedown</a>.
 				</p>
-				<p><?php echo T_("Just insert the code");?>&nbsp;<code>[[markdown-<?php echo T_("nameofthefile");?>]]</code>&nbsp;<?php echo T_("in the template or in the page content.");?></p>
-				<p><?php echo T_("You can display many differents MarkDown files.");?></p>
+				<p><?php echo T_("Just insert the code");?>&nbsp;<code>[[markdown-<?php echo T_("nameofthefileorcontent");?>]]</code>&nbsp;<?php echo T_("in the template or in the page content.");?></p>
+				<p><?php echo T_("You can display many differents MarkDown files or content.");?></p>
 				<p><a href="javascript:void(0)" onClick="f_more_markdown()"><?php echo T_("More details about WordPress readme file...");?></a></p>
 				<div id="mdMore" style="display:none;">
 					<p><?php echo T_("You can use this plugin to allow Paid download for a WordPress premium plugin. It's easy and appearance is identical to the plugin page available on wordpress.org.");?></p>
@@ -46,7 +46,7 @@ if (isset($_POST['action']))
 					<tr>
 						<td><label><?php echo T_("Parser");?></label></td>
 						<td>
-							<select name="markdownPars" id="markdownPars">
+							<select name="markdownPars" id="markdownPars" onChange="f_markdownPay(this,document.getElementById('markdownCss'))">
 								<option value="std"><?php echo T_("Standard MD");?></option>
 								<option value="extra"><?php echo T_("MD with extra tags");?></option>
 								<option value="wp"><?php echo T_("WordPress readme");?></option>
@@ -57,7 +57,7 @@ if (isset($_POST['action']))
 					<tr>
 						<td><label><?php echo T_("CSS");?></label></td>
 						<td>
-							<select name="markdownCss" id="markdownCss">
+							<select name="markdownCss" id="markdownCss" onChange="f_markdownPay(document.getElementById('markdownPars'),this)">
 								<option value=""><?php echo T_("No CSS");?></option>
 								<option value="github-markdown.css">GitHub CSS</option>
 								<option value="mrcoles-markdown.css">MrColes CSS</option>
@@ -67,11 +67,11 @@ if (isset($_POST['action']))
 						</td>
 						<td><em><?php echo T_("CSS to style the HTML output.");?></em></td>
 					</tr>
-					<tr>
+					<tr id="markdownTrPay" style="display:none">
 						<td><label><?php echo T_("Payment system");?></label></td>
 						<td>
 							<select name="markdownPay" id="markdownPay">
-								<option value="payment"><?php echo T_("multiple choice");?></option>
+								<option value="payment"><?php echo T_("multiple choice (Payment)");?></option>
 								<option value="paypal">Paypal</option>
 								<option value="payplug">Payplug</option>
 							</select>
@@ -79,26 +79,43 @@ if (isset($_POST['action']))
 						<td><em><?php echo T_("Only WordPress CSS and Parser. Used to sell a premium plugin. External used in selected plugin required.");?></em></td>
 					</tr>
 				</table>
-				<h3><?php echo T_("Add a MD File :");?></h3>
+				<div class="bouton fr" onClick="f_save_markdown(1);" title="<?php echo T_("Save settings");?>"><?php echo T_("Save");?></div>
+				<div style="clear:both;"></div>
+				<h3><?php echo T_("Add a content or a MD File :");?></h3>
 				<table class="hForm">
 					<tr>
-						<td><label><?php echo T_("Name of the file");?></label></td>
+						<td><label><?php echo T_("Name");?></label></td>
 						<td><input type="text" class="input" name="markdownName" id="markdownName" style="width:80px;margin-right:20px;" value="" /></td>
+						<td><em><?php echo T_("The name will be used in the shortcode : [[markdown-name]].");?></em></td>
 					</tr>
 					<tr>
 						<td><label><?php echo T_("MD File");?></label></td>
 						<td>
-							<input type="text" class="input" name="markdownInp" id="markdownInp" value="" />
-							<div class="bouton finder" style="margin-left:30px;" id="bFMarkdown" onClick="f_finder_select('markdownInp')" title="<?php echo T_("File manager");?>"><img src="<?php echo $_POST['udep']; ?>includes/img/finder.png" /></div>
-							<div class="bouton" onClick="f_add_markdown(document.getElementById('markdownName').value,document.getElementById('markdownInp').value,'! <?php echo T_("Wrong format");?>')" title="<?php echo T_("Add this file");?>"><?php echo T_("Add");?></div>
+							<input type="text" class="input" name="markdownFile" id="markdownFile" value="" />
+							<div class="bouton finder" style="margin-left:30px;" id="bFMarkdown" onClick="f_finder_select('markdownFile')" title="<?php echo T_("File manager");?>"><img src="<?php echo $_POST['udep']; ?>includes/img/finder.png" /></div>
 						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td style="vertical-align:middle"><label><?php echo T_("MD Content");?></label></td>
+						<td>
+							<textarea class="input" style="width:100%" name="markdownCont" id="markdownCont" rows="5"></textarea>
+						</td>
+						<td style="vertical-align:middle"><em><?php echo T_("Add File or Content, not both !");?></em></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td style="text-align:right">
+							<div class="bouton" onClick="f_add_markdown(document.getElementById('markdownName').value,document.getElementById('markdownFile').value,document.getElementById('markdownCont').value,'! <?php echo T_("Error");?>')" title="<?php echo T_("Add this file");?>"><?php echo T_("Add");?></div>
+						</td>
+						<td></td>
 					</tr>
 				</table>
 				<h3><?php echo T_("Selection");?> :</h3>
 				<form id="frmMarkdown">
 					<table id="curMarkdown"></table>
 				</form>
-				<div class="bouton fr" onClick="f_save_markdown();" title="<?php echo T_("Save settings");?>"><?php echo T_("Save");?></div>
+				<br />
 			</div>
 			<div id="markdownDigital" style="display:none;">
 				<select id="markdownSelF">
@@ -193,19 +210,25 @@ if (isset($_POST['action']))
 			$q = file_get_contents('../../data/_sdata-'.$sdata.'/markdown.json');
 			$b = json_decode($q,true);
 			$a = $b;
-			if(isset($b[$Ubusy])) unset($b[$Ubusy]);
 			}
 		else $b = array();
+		if(!isset($b[$Ubusy])) $b[$Ubusy] = array('mspars'=>'std','mdcss'=>'','mdpay'=>'payment');
+		if(isset($b[$Ubusy]['md'])) unset($b[$Ubusy]['md']);
 		foreach($_POST as $k=>$v)
 			{
-			if($k!='action' && $k!='mdpars' && $k!='mdcss' && $k!='mdpay' && $k!='unox')
+			if($k=='mdpars' || $k=='mdcss' || $k=='mdpay') $b[$Ubusy][$k] = $v;
+			else if($k!='action' && $k!='unox')
 				{
-				$b[$Ubusy]['md'][$k]['u'] = $v;
-				if(!isset($a[$Ubusy]['md'][$k]['k'])) $b[$Ubusy]['md'][$k]['k'] = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"),0,16);
-				else $b[$Ubusy]['md'][$k]['k'] = $a[$Ubusy]['md'][$k]['k'];
-				$b[$Ubusy]['md'][$k]['p'] = 0; // prix modifie par Make
+				if(substr($k,0,1)=='f') // file : u, k, p
+					{
+					$c = substr($k,1);
+					$b[$Ubusy]['md'][$c]['u'] = $v;
+					if(!isset($a[$Ubusy]['md'][$c]['k'])) $b[$Ubusy]['md'][$c]['k'] = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"),0,16);
+					else $b[$Ubusy]['md'][$c]['k'] = $a[$Ubusy]['md'][$c]['k'];
+					$b[$Ubusy]['md'][$c]['p'] = 0; // prix modifie par Make
+					}
+				else if(substr($k,0,1)=='c') $b[$Ubusy]['md'][substr($k,1)]['c'] = $v; // content : c
 				}
-			else if($k!='action') $b[$Ubusy][$k] = $v;
 			}
 		$out = json_encode($b);
 		if(file_put_contents('../../data/_sdata-'.$sdata.'/markdown.json', $out)) echo T_('Backup performed');
@@ -218,7 +241,7 @@ if (isset($_POST['action']))
 			$c = 0;
 			$q = file_get_contents('../../data/_sdata-'.$sdata.'/markdown.json');
 			$a = json_decode($q,true);
-			echo stripslashes(json_encode($a[$Ubusy]));
+			echo json_encode($a[$Ubusy]);
 			// crypt file name (WP)
 			if(isset($a[$Ubusy]['md'])) foreach($a[$Ubusy]['md'] as $k=>$v)
 				{
@@ -242,6 +265,21 @@ if (isset($_POST['action']))
 			if($c) file_put_contents('../../data/_sdata-'.$sdata.'/markdown.json', json_encode($a));
 			}
 		else echo 0;
+		break;
+		// ********************************************************************************************
+		case 'edit':
+		if(file_exists('../../data/_sdata-'.$sdata.'/markdown.json') && isset($_POST['c']))
+			{
+			$q = file_get_contents('../../data/_sdata-'.$sdata.'/markdown.json');
+			$a = json_decode($q,true);
+			$b = array('e'=>'!'.T_('Error'));
+			if(isset($a[$Ubusy]['md'][strip_tags($_POST['c'])]['c']))
+				{
+				$b['n'] = strip_tags($_POST['c']);
+				$b['c'] = $a[$Ubusy]['md'][strip_tags($_POST['c'])]['c'];
+				}
+			echo json_encode($b);
+			}
 		break;
 		// ********************************************************************************************
 		case 'block':
