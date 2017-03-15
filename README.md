@@ -33,6 +33,7 @@ Allows to create a comprehensive system of paying plugin download with the appea
 
 ### Versions ###
 
+* 1.3.1 - 15/03/2017 : Fix issue when unknow lang
 * 1.3 - 27/01/2017 : Can now display content from a textarea (not only from a file)
 * 1.2 - 14/10/2016 : Use PHP-Gettext in place of gettext
 * 1.1.5 - 01/06/2016 : Translation correction.
