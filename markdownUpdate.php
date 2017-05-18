@@ -89,7 +89,7 @@ if(!file_exists($d1.'upload/'.$k2.$s.'.zip'))
 //
 // SAVE Server for this key
 $q = file_get_contents($d2.'_sdata-'.$sdata.'/_digital/'.$k.$s.'.json'); $a = json_decode($q,true);
-if((isset($a['b']) && $a['b']) || (isset($a['s']) && count($a['s'])>4)) { echo json_encode($j); exit; } // >4 URL or Manually blocked => BLOCKED !
+if((!empty($a['b'])) || (isset($a['s']) && count($a['s'])>4)) { echo json_encode($j); exit; } // >4 URL or Manually blocked => BLOCKED !
 // OK Door 4
 if(!isset($a['s'][base64_encode($u)]["v"]) || $a['s'][base64_encode($u)]["v"]!=$stable_tag)
 	{

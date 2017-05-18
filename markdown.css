@@ -6,4 +6,5 @@
 #markdownDigital table tr.doute td{color:#0b4a6a;}
 #markdownDigital table tr.pirate td{color:red;}
 #markdownDigital table td.yesno{text-decoration:underline;cursor:pointer;}
+#markdownDigital table td span.suppUrl{display:inline-block;width:14px;height:14px;vertical-align:bottom;margin:0 0 3px 4px;}
 #curMarkdown td{vertical-align:middle;}

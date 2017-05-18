@@ -151,13 +151,14 @@ function f_markdownConfig(){
 	document.getElementById('markdownC').className="bouton fr current";
 }
 function f_markdownBlock(f,g,h,i){
-	jQuery.post('uno/plugins/markdown/markdown.php',{'action':'block','unox':Unox,'id':g,'ban':h,'i':i},function(r){f_alert(r);});
-	if(h!=0){
-		f.innerHTML=h;
-		if(i==0){f.onclick=function(){f_markdownBlock(f,g,'yes',1);};jQuery(f).parent().removeClass("pirate");}
-		else {f.onclick=function(){f_markdownBlock(f,g,'no',0);};jQuery(f).parent().addClass("pirate");}
-	}
-	else jQuery(f).parent().remove();
+	jQuery.post('uno/plugins/markdown/markdown.php',{'action':'block','unox':Unox,'id':g,'i':i},function(r){
+		f_alert(r);
+		if(r.substr(0,1)!='!'){
+			f.innerHTML=h;
+			if(i==0){f.onclick=function(){f_markdownBlock(f,g,'yes',1);};jQuery(f).parent().removeClass("pirate");}
+			else{f.onclick=function(){f_markdownBlock(f,g,'no',0);};jQuery(f).parent().addClass("pirate");}
+		}
+	});
 }
 function f_markdownKey(f,g){
 	jQuery.post('uno/plugins/markdown/markdown.php',{'action':'key','unox':Unox,'file':g,'key':Math.random().toString().substr(2)},function(r){s=r.split("|");f_alert(s[1]);
@@ -168,6 +169,10 @@ function f_more_markdown(){a=document.getElementById('mdMore');if(a.style.displa
 function f_supp_markdownDigital(f,g){
 	f.parentNode.parentNode.removeChild(f.parentNode);
 	jQuery.post('uno/plugins/markdown/markdown.php',{'action':'suppdigital','unox':Unox,'file':g},function(r){f_alert(r);});
+}
+function f_suppUrl_markdownDigital(f,g,h){
+	f.parentNode.parentNode.removeChild(f.parentNode);
+	jQuery.post('uno/plugins/markdown/markdown.php',{'action':'suppurl','unox':Unox,'file':g,'url':h},function(r){f_alert(r);});
 }
 function f_markdownPay(f,g){
 	if(f.options[f.selectedIndex].value=='wp'&&g.options[g.selectedIndex].value=='wp-org.css')document.getElementById('markdownTrPay').style.display='';

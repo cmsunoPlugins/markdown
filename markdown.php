@@ -120,7 +120,8 @@ if (isset($_POST['action']))
 			<div id="markdownDigital" style="display:none;">
 				<select id="markdownSelF">
 					<?php
-					$q = file_get_contents('../../data/_sdata-'.$sdata.'/markdown.json'); $a = json_decode($q,true); $data = ',';
+					$q = file_get_contents('../../data/_sdata-'.$sdata.'/markdown.json'); $a = json_decode($q,true);
+					$data = ',';
 					foreach($a[$Ubusy]['md'] as $k=>$v)
 						{
 						echo '<option value="'.$k.'">'.$k.'</option>';
@@ -133,10 +134,10 @@ if (isset($_POST['action']))
 				<h3><?php echo T_("Updates monitoring"); ?></h3>
 				<p><?php echo T_("The updates are automatically blocked from 5 URL on the same key.");?></p>
 				<?php
-				$tab=''; $d='../../data/_sdata-'.$sdata.'/_digital/';
-				if ($dh=opendir($d))
+				$tab = array(); $d = '../../data/_sdata-'.$sdata.'/_digital/';
+				if($dh=opendir($d))
 					{
-					while (($file = readdir($dh))!==false) { if ($file!='.' && $file!='..') $tab[]=$d.$file; }
+					while(($file = readdir($dh))!==false) { if ($file!='.' && $file!='..') $tab[] = $d.$file; }
 					closedir($dh);
 					}
 				if(count($tab))
@@ -144,9 +145,9 @@ if (isset($_POST['action']))
 					$b = array();
 					foreach($tab as $r)
 						{
-						$q=@file_get_contents($r);
-						$a=json_decode($q,true);
-						if(strpos($data,','.$a['d'].',')!==false) $b[]=$a; // filtre
+						$q = @file_get_contents($r);
+						$a = json_decode($q,true);
+						if(strpos($data,','.$a['d'].',')!==false) $b[] = $a; // filtre
 						}
 					function sortTime($u1,$u2) {return (isset($u2['t'])?$u2['t']:0) - (isset($u1['t'])?$u1['t']:0);}
 					usort($b, 'sortTime');
@@ -164,34 +165,35 @@ if (isset($_POST['action']))
 								$o .= '<td>'.(isset($r['t'])?date("dMy H:i", $r['t']):'').'</td>';
 								$o .= '<td>'.(isset($r['k'])?$r['k']:'').'</td>';
 								$o .= '<td>'.(isset($r['p'])?$r['p']:'').'</td>';
+								// DETAILS
 								$o .= '<td>';
 								if(isset($r['s']))
 									{
 									$c = 0;
 									foreach($r['s'] as $k1=>$v1)
 										{
-										if($c) $o .= '<br />';
-										if(is_array($v1) && isset($v1['t']) && isset($v1['v'])) $o .= date("dMy H:i", $v1['t']).' (V'.$v1['v'].') : '.base64_decode($k1);
-										else $o.= date("dMy H:i", $v1).' : '.base64_decode($k1);
+										if(isset($r['k']) && isset($r['d'])) $s = ' class="suppUrl" style="cursor:pointer;background:transparent url(\''.$_POST['udep'].'includes/img/close.png\') no-repeat scroll center center;" onClick="f_suppUrl_markdownDigital(this,\''.$r['k'].$r['d'].'\',\''.$k1.'\')"';
+										else $s = '';
+										if(is_array($v1) && isset($v1['t']) && isset($v1['v'])) $o .= '<div>'.date("dMy H:i", $v1['t']).' (V'.$v1['v'].') : '.base64_decode($k1).'<span'.$s.'>&nbsp;</span></div>';
+										else $o.= '<div>'.date("dMy H:i", $v1).' : '.base64_decode($k1).'<span'.$s.'>&nbsp;</span></div>';
 										++$c;
 										}
 									if($c>4) $pirate = 1; // >4 URL => BLOCKED ! cf markdownUpdate.php
 									}
 								$o .= '</td>';
+								// BANISH
 								if(isset($r['k']) && isset($r['d']))
 									{
-									if(isset($r['p']) && $r['p']!="free")
-										{
-										if(!isset($r['b'])||!$r['b']) $o .= '<td onClick="f_markdownBlock(this,\''.$r['k'].$r['d'].'\',\''.T_("Yes").'\',1)" class="yesno">'.T_("No").'</td>';
-										else $o .= '<td onClick="f_markdownBlock(this,\''.$r['k'].$r['d'].'\',\''.T_("No").'\',0)" class="yesno">'.T_("Yes").'</td>';
-										}
-									else $o .= '<td '.((!isset($r['b'])||!$r['b'])?'onClick="f_markdownBlock(this,\''.$r['k'].$r['d'].'\',0,0)"':'').' class="yesno">'.T_("Del").'</td>';
+									if(empty($r['b'])) $o .= '<td onClick="f_markdownBlock(this,\''.$r['k'].$r['d'].'\',\''.T_("Yes").'\',1)" class="yesno">'.T_("No").'</td>';
+									else $o .= '<td onClick="f_markdownBlock(this,\''.$r['k'].$r['d'].'\',\''.T_("No").'\',0)" class="yesno">'.T_("Yes").'</td>';
 									}
 								else $o .= '<td></td>';
-								if(!isset($r['s']) && isset($r['k']) && isset($r['d'])) $o .= '<td width="30px" style="cursor:pointer;background:transparent url(\''.$_POST['udep'].'includes/img/close.png\') no-repeat scroll center center;" onClick="f_supp_markdownDigital(this,\''.$r['k'].$r['d'].'\')">&nbsp;</td>';
+								// DEL
+								if(empty($r['s']) && isset($r['k']) && isset($r['d'])) $o .= '<td width="30px" style="cursor:pointer;background:transparent url(\''.$_POST['udep'].'includes/img/close.png\') no-repeat scroll center center;" onClick="f_supp_markdownDigital(this,\''.$r['k'].$r['d'].'\')">&nbsp;</td>';
 								else $o .= '<td></td>';
-								// ECHO
-								echo '<tr class="'.(isset($r['d'])?$r['d']:'').((isset($r['b'])&&$r['b']||$pirate)?' pirate':((isset($r['s'])&&count($r['s'])>1)?' doute':'')).'">' . $o . '</tr>';
+								//
+								//
+								echo '<tr class="'.(isset($r['d'])?$r['d']:'').((!empty($r['b'])||$pirate)?' pirate':((isset($r['s'])&&count($r['s'])>1)?' doute':'')).'">' . $o . '</tr>';
 								}
 							}
 						echo '</table>';
@@ -204,7 +206,7 @@ if (isset($_POST['action']))
 		<?php break;
 		// ********************************************************************************************
 		case 'save':
-		$key=0; $a = false;
+		$key = 0; $a = false;
 		if(file_exists('../../data/_sdata-'.$sdata.'/markdown.json'))
 			{
 			$q = file_get_contents('../../data/_sdata-'.$sdata.'/markdown.json');
@@ -268,58 +270,87 @@ if (isset($_POST['action']))
 		break;
 		// ********************************************************************************************
 		case 'edit':
-		if(file_exists('../../data/_sdata-'.$sdata.'/markdown.json') && isset($_POST['c']))
+		$name = isset($_POST['c'])?strip_tags($_POST['c']):false;
+		if($name && file_exists('../../data/_sdata-'.$sdata.'/markdown.json'))
 			{
 			$q = file_get_contents('../../data/_sdata-'.$sdata.'/markdown.json');
 			$a = json_decode($q,true);
 			$b = array('e'=>'!'.T_('Error'));
-			if(isset($a[$Ubusy]['md'][strip_tags($_POST['c'])]['c']))
+			if(isset($a[$Ubusy]['md'][$name]['c']))
 				{
-				$b['n'] = strip_tags($_POST['c']);
-				$b['c'] = $a[$Ubusy]['md'][strip_tags($_POST['c'])]['c'];
+				$b['n'] = $name;
+				$b['c'] = $a[$Ubusy]['md'][$name]['c'];
 				}
 			echo json_encode($b);
 			}
 		break;
 		// ********************************************************************************************
 		case 'block':
-		$q = @file_get_contents('../../data/_sdata-'.$sdata.'/_digital/'.$_POST['id'].'.json');
-		if(!$_POST['ban'])
+		$id = isset($_POST['id'])?strip_tags($_POST['id']):false;
+		$i = isset($_POST['i'])?strip_tags($_POST['i']):false;
+		$succes = 0;
+		$q = @file_get_contents('../../data/_sdata-'.$sdata.'/_digital/'.$id.'.json');
+		if($q)
 			{
-			unlink('../../data/_sdata-'.$sdata.'/_digital/'.$_POST['id'].'.json');
-			echo T_('Removed');
-			}
-		else
-			{
-			if($q)
-				{
-				$a = json_decode($q,true);
-				$a['b'] = $_POST['i']; // 1 ou 0
-				}
+			$a = json_decode($q,true);
+			$a['b'] = $i; // 1 ou 0
 			$out = json_encode($a);
-			if (file_put_contents('../../data/_sdata-'.$sdata.'/_digital/'.$_POST['id'].'.json', $out)) echo T_('Treated');
-			else echo '!'.T_('Error');
+			if(file_put_contents('../../data/_sdata-'.$sdata.'/_digital/'.$id.'.json', $out))
+				{
+				echo T_('Treated');
+				$succes = 1;
+				}
 			}
+		if(!$succes) echo '!'.T_('Error');
 		break;
 		// ********************************************************************************************
 		case 'key':
+		$succes = 0;
 		if(isset($_POST['key']) && isset($_POST['file']))
 			{
-			$k = $_POST['key'];
-			$d = $_POST['file'];
-			if(file_put_contents('../../data/_sdata-'.$sdata.'/_digital/'.$k.$d.'.json', '{"t":"'.time().'","p":"free","d":"'.$d.'","k":"'.$k.'"}')) echo $k.'|'.T_('Treated');
-			else echo '000|'.'!'.T_('Error');
+			$k = strip_tags($_POST['key']);
+			$d = strip_tags($_POST['file']);
+			if(file_put_contents('../../data/_sdata-'.$sdata.'/_digital/'.$k.$d.'.json', '{"t":"'.time().'","p":"free","d":"'.$d.'","k":"'.$k.'"}'))
+				{
+				echo $k.'|'.T_('Treated');
+				$succes = 1;
+				}
 			}
-		else echo '000|'.'!'.T_('Error');
+		if(!$succes) echo '000|'.'!'.T_('Error');
 		break;
 		// ********************************************************************************************
 		case 'suppdigital':
-		if(file_exists('../../data/_sdata-'.$sdata.'/_digital/'.$_POST['file'].'.json'))
+		$d = isset($_POST['file'])?strip_tags($_POST['file']):false;
+		if($d && file_exists('../../data/_sdata-'.$sdata.'/_digital/'.$d.'.json'))
 			{
-			unlink('../../data/_sdata-'.$sdata.'/_digital/'.$_POST['file'].'.json');
+			unlink('../../data/_sdata-'.$sdata.'/_digital/'.$d.'.json');
 			echo T_('Removed');
 			}
 		else echo '!'.T_('Error');
+		break;
+		// ********************************************************************************************
+		case 'suppurl':
+		$d = isset($_POST['file'])?strip_tags($_POST['file']):false;
+		$u = isset($_POST['url'])?strip_tags($_POST['url']):false;
+		$succes = 0;
+		if($d && $u && file_exists('../../data/_sdata-'.$sdata.'/_digital/'.$d.'.json'))
+			{
+			$q = file_get_contents('../../data/_sdata-'.$sdata.'/_digital/'.$d.'.json');
+			if($q)
+				{
+				$a = json_decode($q,true);
+				if(isset($a['s'][$u]))
+					{
+					unset($a['s'][$u]);
+					if(file_put_contents('../../data/_sdata-'.$sdata.'/_digital/'.$d.'.json', json_encode($a)))
+						{
+						echo T_('Removed');
+						$succes = 1;
+						}
+					}
+				}
+			}
+		if(!$succes) echo '!'.T_('Error');
 		break;
 		// ********************************************************************************************
 		}
