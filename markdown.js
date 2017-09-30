@@ -111,14 +111,23 @@ function f_load_markdown(){
 					for(v=0;v<to.length;v++){if(to[v].value==d){to[v].selected=true;v=to.length;}}
 				}
 				else if(k=='md'){
+					t=document.getElementById("frmMarkdown");
 					jQuery.each(d,function(k1,d1){
-						if(typeof d1.u!="undefined"){
+						if(typeof d1.u!="undefined"){ // file
 							jQuery('#curMarkdown').append('<tr id="i'+k1+'"><td style="width:110px;padding-left:40px;">'+k1+'</td><td style="padding-left:10px;">'+d1.u+'</td><td style="padding-left:40px;padding-right:20px;">[[markdown-'+k1+']]</td><td style="width:20px;cursor:pointer;background:transparent url(\''+Udep+'includes/img/close.png\') no-repeat scroll center center;" onClick="this.parentNode.parentNode.removeChild(this.parentNode);d=document.getElementsByName(\'f'+k1+'\')[0];d.parentNode.removeChild(d);f_save_markdown(0);"></td><td></td></tr>');
-							jQuery('#frmMarkdown').append('<input type="hidden" name="f'+k1+'" value="'+d1.u+'" />');
+							to=document.createElement('input');
+							to.type='hidden';
+							to.name='f'+k1;
+							to.value=d1.u;
+							t.appendChild(to);
 						}
-						else if(typeof d1.c!="undefined"){
+						else if(typeof d1.c!="undefined"){ // content
 							jQuery('#curMarkdown').append('<tr id="i'+k1+'"><td style="width:110px;padding-left:40px;">'+k1+'</td><td style="padding-left:10px;border:1px solid #555;">'+d1.c.substr(0,128)+'</td><td style="padding-left:40px;padding-right:20px;">[[markdown-'+k1+']]</td><td style="width:20px;cursor:pointer;background:transparent url(\''+Udep+'includes/img/close.png\') no-repeat scroll center center;" onClick="this.parentNode.parentNode.removeChild(this.parentNode);d=document.getElementsByName(\'c'+k1+'\')[0];d.parentNode.removeChild(d);f_save_markdown(0);"></td><td onClick="f_edit_markdown(\''+k1+'\')"><div style="width:20px;height:20px;cursor:pointer;background:transparent url(\''+Udep+'includes/img/ui-icons_444444_256x240.png\') no-repeat scroll -64px -112px;"></div></td></tr>');
-							jQuery('#frmMarkdown').append('<input type="hidden" name="c'+k1+'" value="'+d1.c+'" />');
+							to=document.createElement('input');
+							to.type='hidden';
+							to.name='c'+k1;
+							to.value=d1.c;
+							t.appendChild(to);
 						}
 					});
 				}
@@ -162,7 +171,7 @@ function f_markdownBlock(f,g,h,i){
 }
 function f_markdownKey(f,g){
 	jQuery.post('uno/plugins/markdown/markdown.php',{'action':'key','unox':Unox,'file':g,'key':Math.random().toString().substr(2)},function(r){s=r.split("|");f_alert(s[1]);
-		alert(s[0]);document.getElementById('markdownK').innerHTML=f+'<strong style="font-weight:700;">&lt;?php $key = "'+s[0]+'"; ?&gt;</strong>';
+		document.getElementById('markdownK').innerHTML=f+'<strong style="font-weight:700;">&lt;?php $key = "'+s[0]+'"; ?&gt;</strong>';
 	});
 }
 function f_more_markdown(){a=document.getElementById('mdMore');if(a.style.display=="none")a.style.display='block';else a.style.display='none';}
