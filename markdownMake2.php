@@ -33,7 +33,7 @@ if(file_exists('data/_sdata-'.$sdata.'/markdown.json'))
 				$q2 = str_replace("&gt;",">", $q2);
 				$r2 = explode("\n",$q2);
 				$q2="";$me="";$ti="";$other=0;
-				$requires_at_least=0;$tested_up_to=0;$stable_tag=0;$tags=0;$contributors=array();$donate_link=0;$license=0;$license_uri=0;$short_description=0;$cart=0;$mdfoot2='';
+				$requires_at_least=0;$tested_up_to=0;$stable_tag=0;$requires_php=0;$tags=0;$contributors=array();$donate_link=0;$license=0;$license_uri=0;$short_description=0;$cart=0;$mdfoot2='';
 				foreach($r2 as $v2)
 					{
 					$v2 = rtrim($v2);
@@ -81,6 +81,7 @@ if(file_exists('data/_sdata-'.$sdata.'/markdown.json'))
 						if(preg_match('|Requires at least:(.*)|i',$v2,$m)) $requires_at_least = trim($m[1]);
 						else if(preg_match('|Tested up to:(.*)|i',$v2,$m)) $tested_up_to = trim($m[1]);
 						else if(preg_match('|Stable tag:(.*)|i',$v2,$m)) $stable_tag = trim($m[1]);
+						else if(preg_match('|Requires PHP:(.*)|i',$v2,$m)) $requires_php = trim($m[1]);
 						else if(preg_match('|Tags:(.*)|i',$v2,$m)) $tags = trim($m[1]);
 						else if(preg_match('|Contributors:(.*)|i',$v2,$m))
 							{
@@ -102,7 +103,7 @@ if(file_exists('data/_sdata-'.$sdata.'/markdown.json'))
 					}
 				if($a1['mdcss']=="wp-org.css")
 					{
-					if($price) $cart = '{"prod":{"0":{"n":"'.$ti.'","p":'.$price.',"i":"","q":1}},"digital":"'.$Ubusy.'|'.$k1.'"}';			
+					if($price) $cart = '{"prod":{"0":{"n":"'.$ti.'","p":'.$price.',"i":"","q":1}},"digital":"'.$Ubusy.'|'.$k1.'","Ubusy":"'.$Ubusy.'"}';			
 					$q3 = $Parsedown->text($q2);
 					$out = '<div class="markdown markdown-'.$k1.'">'."\r\n".'<div class="col-10">'."\r\n";
 					$out .= '<div class="plugin-title with-banner" style="background-image:url(files/'.$k1.'/banner-772x250.png);"><div class="vignette"></div><h2>'.$ti.'</h2></div><!-- #plugin-title -->'."\r\n";
@@ -165,6 +166,7 @@ if(file_exists('data/_sdata-'.$sdata.'/markdown.json'))
 						if($requires_at_least) $o1 .= '<strong>Requires at least:</strong> '.$requires_at_least."<br />"."\r\n";
 						if($tested_up_to) $o1 .= '<strong>Tested up to:</strong> '.$tested_up_to."<br />"."\r\n";
 						if($stable_tag) $o1 .= '<strong>Stable tag:</strong> '.$stable_tag."<br />"."\r\n";
+						if($requires_php) $o1 .= '<strong>Requires PHP:</strong> '.$requires_php."<br />"."\r\n";
 						if($tags) $o1 .= '<strong>Tags:</strong> '.$tags."<br />"."\r\n";
 						if($donate_link) $o1 .= '<strong>Donate link:</strong><a href="'.$donate_link.'"> '.$donate_link."</a><br />"."\r\n";
 						if($license) $o1 .= '<strong>License:</strong> '.$license."<br />"."\r\n";
