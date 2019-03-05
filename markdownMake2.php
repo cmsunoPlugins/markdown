@@ -69,7 +69,7 @@ if(file_exists('data/_sdata-'.$sdata.'/markdown.json'))
 						}
 					foreach(array('description','installation','frequently_asked_questions','screenshots','changelog','change_log','upgrade_notice','support') as $mn)
 						{
-						if(stristr($v2,str_replace('_',' ',$mn)) && substr($v2,0,2)=="##")
+						if(stristr($v2,str_replace('_',' ',$mn)) && substr($v2,0,2)=="##" && substr($v2,0,3)!="###")
 							{
 							if($mn=='frequently_asked_questions') $me .= '<li class="section-'.$mn.(($me=="" || $me==" ")?' current':'').'" onClick="mdwpMenu(\''.$mn.'\',\''.$k1.'\')"><a href="javascript:void(0)">F.A.Q.</a></li>';
 							else $me .= '<li class="section-'.$mn.(($me=="" || $me==" ")?' current':'').'" onClick="mdwpMenu(\''.$mn.'\',\''.$k1.'\')"><a href="javascript:void(0)">'.ucfirst($mn).'</a></li>';

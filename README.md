@@ -33,6 +33,7 @@ Allows to create a comprehensive system of paying plugin download with the appea
 
 ### Versions ###
 
+* 1.3.6 - 05/03/2019 : Fix MD issue.
 * 1.3.5 - 09/11/2017 : Add Ubusy in JS cart.
 * 1.3.4 - 30/09/2017 : Fix display bug in back office with MD Content.
 * 1.3.3 - 18/05/2017 : Add link to remove key URL in list.
