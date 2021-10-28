@@ -18,6 +18,7 @@ $d2=dirname(__FILE__).'/../../data/';
 $s = (isset($_GET['s'])?strip_tags($_GET['s']):false); // slug
 $k = (isset($_GET['k'])?strip_tags($_GET['k']):false); // key
 $u = (isset($_GET['u'])?strip_tags($_GET['u']):false); // url
+$u = preg_replace("/^([a-zA-Z0-9].*\.)?([a-zA-Z0-9][a-zA-Z0-9-]{1,61}[a-zA-Z0-9]\.[a-zA-Z.]{2,})$/", '$2', $u); // remove subdomains (and www)
 if(!$s || !$k || !$u || !file_exists($d2.'_sdata-'.$sdata.'/_digital/'.$k.$s.'.json') || !file_exists($d2.'_sdata-'.$sdata.'/markdown.json')) // OUT
 	{
 	echo json_encode(array());

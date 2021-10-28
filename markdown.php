@@ -172,10 +172,11 @@ if (isset($_POST['action']))
 									$c = 0;
 									foreach($r['s'] as $k1=>$v1)
 										{
+										$url = base64_decode($k1);
 										if(isset($r['k']) && isset($r['d'])) $s = ' class="suppUrl" style="cursor:pointer;background:transparent url(\''.$_POST['udep'].'includes/img/close.png\') no-repeat scroll center center;" onClick="f_suppUrl_markdownDigital(this,\''.$r['k'].$r['d'].'\',\''.$k1.'\')"';
 										else $s = '';
-										if(is_array($v1) && isset($v1['t']) && isset($v1['v'])) $o .= '<div>'.date("dMy H:i", $v1['t']).' (V'.$v1['v'].') : '.base64_decode($k1).'<span'.$s.'>&nbsp;</span></div>';
-										else $o.= '<div>'.date("dMy H:i", $v1).' : '.base64_decode($k1).'<span'.$s.'>&nbsp;</span></div>';
+										if(is_array($v1) && isset($v1['t']) && isset($v1['v'])) $o .= '<div>'.date("dMy H:i", $v1['t']).' (V'.$v1['v'].') : '.$url.'<span'.$s.'>&nbsp;</span></div>';
+										else $o.= '<div>'.date("dMy H:i", $v1).' : '.$url.'<span'.$s.'>&nbsp;</span></div>';
 										++$c;
 										}
 									if($c>4) $pirate = 1; // >4 URL => BLOCKED ! cf markdownUpdate.php

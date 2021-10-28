@@ -71,10 +71,10 @@ if(file_exists('data/_sdata-'.$sdata.'/markdown.json'))
 						{
 						if(stristr($v2,str_replace('_',' ',$mn)) && substr($v2,0,2)=="##" && substr($v2,0,3)!="###")
 							{
-							if($mn=='frequently_asked_questions') $me .= '<li class="section-'.$mn.(($me=="" || $me==" ")?' current':'').'" onClick="mdwpMenu(\''.$mn.'\',\''.$k1.'\')"><a href="javascript:void(0)">F.A.Q.</a></li>';
-							else $me .= '<li class="section-'.$mn.(($me=="" || $me==" ")?' current':'').'" onClick="mdwpMenu(\''.$mn.'\',\''.$k1.'\')"><a href="javascript:void(0)">'.ucfirst($mn).'</a></li>';
+							if($mn=='frequently_asked_questions') $me .= '<li class="section-'.$mn.(($me=="" || $me==" ")?' current':'').'" onClick="mdwpMenu(\''.$mn.'\',\''.$k1.'\')"><a href="javascript:void(0)">F.A.Q.</a></li>'."\r\n";
+							else $me .= '<li class="section-'.$mn.(($me=="" || $me==" ")?' current':'').'" onClick="mdwpMenu(\''.$mn.'\',\''.$k1.'\')"><a href="javascript:void(0)">'.ucfirst($mn).'</a></li>'."\r\n";
 							}
-						else if(substr($v2,0,2)=="##") $other = '<li class="section-other" onClick="mdwpMenu(\'other\',\''.$k1.'\')"><a href="javascript:void(0)">Other</a></li>';
+						else if(substr($v2,0,2)=="##") $other = '<li class="section-other" onClick="mdwpMenu(\'other\',\''.$k1.'\')"><a href="javascript:void(0)">Other</a></li>'."\r\n";
 						}
 					if($me=="" && $a1['mdcss']=="wp-org.css")
 						{
@@ -121,7 +121,7 @@ if(file_exists('data/_sdata-'.$sdata.'/markdown.json'))
 						}
 					if($me!="")
 						{
-						$out .= '<div class="head head-big"><ul id="mdm-'.$k1.'" class="sections">'.$me.($other?$other:'').'<ul></div><!-- .head -->'."\r\n";
+						$out .= '<div class="head head-big">'."\r\n".'<ul id="mdm-'.$k1.'" class="sections">'."\r\n".$me.($other?$other:'').'<ul>'."\r\n".'</div><!-- .head -->'."\r\n";
 						if(!$mdfoot)
 							{
 							$mdfoot = "<script type=\"text/javascript\">function mdwpMenu(f,g){var a=document.getElementById('md-'+g).getElementsByTagName('div');for(var v=0;v<a.length;v++){if(a[v].id.search('mdtab-')!=-1){if(a[v].id.search(f)!=-1)a[v].style.display='block';else a[v].style.display='none';}};a=document.getElementById('mdm-'+g).getElementsByTagName('li');for(v=0;v<a.length;v++){if(a[v].className.search(f)!=-1)a[v].className='section-'+f+' current';else a[v].className=a[v].className.replace(' current','');};};function mdwpDownload(f){[[markdowndDL]]};markdowndDL=null;</script>"."\r\n";

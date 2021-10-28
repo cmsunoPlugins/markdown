@@ -51,7 +51,7 @@ ul.column-list a.more{right:3ex;}
 p.button a:hover{color:#ffac90;border:none;}
 .plugin-description p.button{float:right;min-width:182px;margin-top:-8px;margin-bottom:0;}
 .plugin-info{margin-top:-70px;margin-bottom:25px;}
-.plugin-info .head-big{overflow:hidden;width:743px;height:30px;padding:10px 0 0 29px;margin-bottom:29px;}
+.plugin-info .head-big{box-sizing:content-box;overflow:hidden;width:743px;height:30px;padding:10px 0 0 29px;margin-bottom:29px;}
 .plugin-info ul.sections{position:relative;float:left;margin:0;padding:0;list-style:none;text-indent:0;}
 .plugin-info ul.sections li{font-size:13px;line-height:1;display:block;float:left;padding:8px 8px 9px;margin:0;}
 .plugin-info ul.sections li.current{padding-top:7px;background-color:#fff;border-style:solid;border-width:1px 1px 0 1px;border-color:#d7d7d7;-webkit-box-shadow:0 0 8px 0px rgba( 100, 100, 100, 0.12 );-moz-box-shadow:0 0 8px 0px rgba( 100, 100, 100, 0.12 );box-shadow:0 0 8px 0px rgba( 100, 100, 100, 0.12 );-webkit-border-top-left-radius:3px;-webkit-border-top-right-radius:3px;border-top-left-radius:3px;border-top-right-radius:3px;}
