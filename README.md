@@ -33,6 +33,7 @@ Allows to create a comprehensive system of paying plugin download with the appea
 
 ### Versions ###
 
+* 1.3.8 - 27/09/2022 : Responsive display.
 * 1.3.7 - 28/10/2021 : Remove subdomain to avoid duplicates.
 * 1.3.6 - 05/03/2019 : Fix MD issue.
 * 1.3.5 - 09/11/2017 : Add Ubusy in JS cart.

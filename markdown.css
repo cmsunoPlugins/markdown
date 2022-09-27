@@ -8,3 +8,10 @@
 #markdownDigital table td.yesno{text-decoration:underline;cursor:pointer;}
 #markdownDigital table td span.suppUrl{display:inline-block;width:14px;height:14px;vertical-align:bottom;margin:0 0 3px 4px;}
 #curMarkdown td{vertical-align:middle;}
+@media screen and (max-width:780px){
+	#curMarkdown tr,#markdownDigital tr{display:block;margin-bottom:10px;}
+	#curMarkdown td:nth-child(2){display:block;text-align:left;max-width:95%;}
+	#curMarkdown td{padding-left:0!important;padding-right:15px!important;}
+	#markdownDigital td:nth-child(3),#markdownDigital td:nth-child(4),#markdownDigital td:nth-child(5),#markdownDigital th:nth-child(3),#markdownDigital th:nth-child(4),#markdownDigital th:nth-child(5){display:block;}
+
+}
